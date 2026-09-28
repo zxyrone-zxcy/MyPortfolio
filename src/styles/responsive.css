@@ -1,0 +1,43 @@
+/* Responsive Base Layout */
+.page-width {
+  width: min(100% - 2rem, 1120px);
+  margin-inline: auto;
+}
+
+/* Mobile Media Query Rules */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Hide wide links on mobile screens */
+  }
+
+  .menu-wrap {
+    display: block; /* Show hamburger button */
+  }
+
+  .top-nav {
+    width: calc(100% - 1.25rem);
+    padding: 0.6rem 0.9rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu-wrap {
+    display: none; /* Hide hamburger button on larger viewports */
+  }
+
+  .nav-links {
+    display: flex;
+  }
+}
+
+@media (max-width: 520px) {
+  .brand-mark { font-size: 0.67rem; letter-spacing: 0.04em; }
+  .top-nav { top: 0.55rem; width: calc(100% - 1rem); }
+  .hero-section { min-height: min(760px, 100svh); padding: 7rem 1rem 5rem; }
+  .hero-name { font-size: clamp(2rem, 10vw, 2.6rem); line-height: 1.08; }
+  .hero-description { font-size: 0.96rem; }
+  .hero-actions { align-items: stretch; flex-direction: column; width: min(100%, 19rem); margin-inline: auto; }
+  .hero-actions a { justify-content: center; }
+  .section-container { padding-inline: 1.15rem; }
+  .about-number-card, .photo-card { min-height: 14rem; }
+}
