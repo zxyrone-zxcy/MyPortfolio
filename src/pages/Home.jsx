@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowDown, Facebook, Instagram, Linkedin, Code2, Coffee, Zap, Atom, Database, Leaf, Notebook } from 'lucide-react';
+import { ArrowDown, Facebook, Instagram, Linkedin, Code2, Coffee, Zap, Atom, Database, Leaf, Notebook, Braces } from 'lucide-react';
 import profilePhoto from '../assets/hero.png';
 import paraBangPhoto from '../assets/NaParaBang.png';
 import '../styles/global.css';
@@ -13,6 +13,7 @@ const technologies = [
   { name: 'Oracle Database', Icon: Database, style: 'technology-oracle' },
   { name: 'MongoDB', Icon: Leaf, style: 'technology-mongodb' },
   { name: 'Google Colab', Icon: Notebook, style: 'technology-colab' },
+  { name: 'Python', Icon: Braces, style: 'technology-python' },
 ];
 
 const Home = () => {

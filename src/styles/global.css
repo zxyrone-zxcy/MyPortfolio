@@ -480,6 +480,7 @@
 .technology-react svg { color: #61dafb; }
 .technology-oracle svg { color: #f80000; }
 .technology-mongodb svg { color: #00ed64; }
+.technology-python svg { color: #ffd43b; }
 
 @keyframes technology-marquee-right {
   from { transform: translateX(-50%); }
