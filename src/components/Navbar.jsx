@@ -23,7 +23,7 @@ export default function Navbar() {
       <nav className="top-nav" aria-label="Primary navigation">
         <Link to="/" className="brand-mark" aria-label="Back to top" onClick={handleHomeClick}>
           <span className="brand-dot" aria-hidden="true"></span>
-          <span>Xyrone Edmund Zamudio</span>
+          <span>Xyrone / Dev</span>
         </Link>
 
         <div className="nav-links">

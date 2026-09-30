@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { ArrowUpRight, ShieldCheck, Cpu, Cloud, GraduationCap, BookOpen, Award, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Award, Sparkles } from 'lucide-react';
 import '../styles/global.css';
 import '../styles/responsive.css';
+import '../styles/certifications.css';
 
 const Certificates = () => {
   const containerRef = useRef(null);
@@ -27,7 +28,6 @@ const Certificates = () => {
   const certifications = [
     {
       id: 1,
-      icon: <ShieldCheck size={20} />,
       title: 'CompTIA IT Fundamentals+',
       issuer: 'CompTIA',
       category: 'Information Technology',
@@ -37,7 +37,6 @@ const Certificates = () => {
     },
     {
       id: 2,
-      icon: <Cpu size={20} />,
       title: 'Cisco JavaScript Essentials 1 & 2',
       issuer: 'Cisco Networking Academy',
       category: 'JavaScript Development',
@@ -50,7 +49,6 @@ const Certificates = () => {
     },
     {
       id: 3,
-      icon: <Cloud size={20} />,
       title: 'IT Specialist – Databases',
       issuer: 'Certiport',
       category: 'Database Management',
@@ -63,7 +61,6 @@ const Certificates = () => {
   const courseCompletions = [
     {
       id: 1,
-      icon: <GraduationCap size={20} />,
       title: 'Course title to be added',
       provider: 'Provider to be added',
       details: 'Completion date to be added · Learning path in progress.',
@@ -71,7 +68,6 @@ const Certificates = () => {
     },
     {
       id: 2,
-      icon: <BookOpen size={20} />,
       title: 'Course title to be added',
       provider: 'Provider to be added',
       details: 'Completion date to be added · Additional skill-building milestone.',
@@ -96,30 +92,45 @@ const Certificates = () => {
             </p>
           </header>
 
-          <div className="cards-grid">
-            {certifications.map((cert) => (
-              <article key={cert.id} className="canva-card cert-card reveal-on-scroll">
-                <div className="card-head">
-                  <div className="icon-badge">{cert.icon}</div>
-                  <span className="status-pill">{cert.status}</span>
-                </div>
+          <div className="cards-marquee">
+            <div className="cards-track">
+              {[false, true].map((isDuplicate) => (
+                <div className="cards-set" key={String(isDuplicate)} aria-hidden={isDuplicate || undefined}>
+                  {certifications.map((cert) => (
+                    <article
+                      key={cert.id}
+                      className={`canva-card cert-card${isDuplicate ? '' : ' reveal-on-scroll'}`}
+                    >
+                      <div className="card-head">
+                        <span className="status-pill">{cert.status}</span>
+                      </div>
 
-                <div className="card-copy">
-                  <h3 className="card-title">{cert.title}</h3>
-                  <p className="card-subtext">{cert.issuer} · {cert.category}</p>
-                  <p className="card-status">{cert.details}</p>
-                </div>
+                      <div className="card-copy">
+                        <h3 className="card-title">{cert.title}</h3>
+                        <p className="card-subtext">{cert.issuer} · {cert.category}</p>
+                        <p className="card-status">{cert.details}</p>
+                      </div>
 
-                <div className="card-links">
-                  {(cert.links ?? [{ label: 'View certificate', url: cert.link }]).map((link) => (
-                    <a key={link.url} href={link.url} className="card-link" target="_blank" rel="noreferrer">
-                      <span>{link.label}</span>
-                      <ArrowUpRight size={14} />
-                    </a>
+                      <div className="card-links">
+                        {(cert.links ?? [{ label: 'View certificate', url: cert.link }]).map((link) => (
+                          <a
+                            key={link.url}
+                            href={link.url}
+                            className="card-link"
+                            target="_blank"
+                            rel="noreferrer"
+                            tabIndex={isDuplicate ? -1 : undefined}
+                          >
+                            <span>{link.label}</span>
+                            <ArrowUpRight size={14} />
+                          </a>
+                        ))}
+                      </div>
+                    </article>
                   ))}
                 </div>
-              </article>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
@@ -137,23 +148,31 @@ const Certificates = () => {
             </p>
           </header>
 
-          <div className="cards-grid">
-            {courseCompletions.map((course) => (
-              <article key={course.id} className="canva-card cert-card reveal-on-scroll">
-                <div className="card-head">
-                  <div className="icon-badge">{course.icon}</div>
-                  <span className="status-pill muted">{course.status}</span>
-                </div>
+          <div className="cards-marquee">
+            <div className="cards-track">
+              {[false, true].map((isDuplicate) => (
+                <div className="cards-set" key={String(isDuplicate)} aria-hidden={isDuplicate || undefined}>
+                  {courseCompletions.map((course) => (
+                    <article
+                      key={course.id}
+                      className={`canva-card cert-card${isDuplicate ? '' : ' reveal-on-scroll'}`}
+                    >
+                      <div className="card-head">
+                        <span className="status-pill muted">{course.status}</span>
+                      </div>
 
-                <div className="card-copy">
-                  <h3 className="card-title">{course.title}</h3>
-                  <p className="card-subtext">{course.provider}</p>
-                  <p className="card-status">{course.details}</p>
-                </div>
+                      <div className="card-copy">
+                        <h3 className="card-title">{course.title}</h3>
+                        <p className="card-subtext">{course.provider}</p>
+                        <p className="card-status">{course.details}</p>
+                      </div>
 
-                <span className="card-link disabled">Certificate link pending</span>
-              </article>
-            ))}
+                      <span className="card-link disabled">Certificate link pending</span>
+                    </article>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </main>

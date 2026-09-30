@@ -1,5 +1,14 @@
 import React, { useEffect, useRef } from "react";
-import { ArrowDown, Puzzle, GraduationCap, Network } from "lucide-react";
+import { ArrowDown, Puzzle, GraduationCap, Network, Image } from "lucide-react";
+import achieverImage from "../assets/achiever.png";
+import groupLessonImage from "../assets/grouplesson.png";
+import systemsThinkingImage from "../assets/systhink.png";
+
+const strengths = [
+  { title: "Problem solving", Icon: Puzzle, imageSrc: achieverImage },
+  { title: "Continuous learning", Icon: GraduationCap, imageSrc: groupLessonImage },
+  { title: "Systems thinking", Icon: Network, imageSrc: systemsThinkingImage },
+];
 
 export default function Experience() {
   const pageRef = useRef(null);
@@ -133,24 +142,30 @@ export default function Experience() {
           </div>
 
           <div className="experience-strengths">
-            <article className="side-note experience-strength-card reveal-on-scroll">
-              <div className="w-9 h-9 grid place-items-center rounded-lg bg-[#6ea8ff]/15 text-[#a8c9ff]">
-                <Puzzle size={19} />
-              </div>
-              <h3 className="text-lg font-bold text-[#eef4ff] mt-3">Problem solving</h3>
-            </article>
-            <article className="side-note experience-strength-card reveal-on-scroll" style={{ transitionDelay: "90ms" }}>
-              <div className="w-9 h-9 grid place-items-center rounded-lg bg-[#6ea8ff]/15 text-[#a8c9ff]">
-                <GraduationCap size={19} />
-              </div>
-              <h3 className="text-lg font-bold text-[#eef4ff] mt-3">Continuous learning</h3>
-            </article>
-            <article className="side-note experience-strength-card reveal-on-scroll" style={{ transitionDelay: "180ms" }}>
-              <div className="w-9 h-9 grid place-items-center rounded-lg bg-[#6ea8ff]/15 text-[#a8c9ff]">
-                <Network size={19} />
-              </div>
-              <h3 className="text-lg font-bold text-[#eef4ff] mt-3">Systems thinking</h3>
-            </article>
+            {strengths.map(({ title, Icon, imageSrc }, index) => (
+              <article
+                className="side-note experience-strength-card reveal-on-scroll"
+                key={title}
+                style={{ transitionDelay: `${index * 90}ms` }}
+              >
+                <div className="experience-strength-photo">
+                  {imageSrc ? (
+                    <a href={imageSrc} target="_blank" rel="noreferrer" aria-label={`Open ${title} photo`}>
+                      <img src={imageSrc} alt={`${title} photo`} />
+                    </a>
+                  ) : (
+                    <div className="experience-strength-photo-placeholder" aria-label={`${title} photo frame`}>
+                      <Image size={22} aria-hidden="true" />
+                      <span>Photo frame</span>
+                    </div>
+                  )}
+                </div>
+                <div className="w-9 h-9 grid place-items-center rounded-lg bg-[#6ea8ff]/15 text-[#a8c9ff]">
+                  <Icon size={19} />
+                </div>
+                <h3 className="text-lg font-bold text-[#eef4ff] mt-3">{title}</h3>
+              </article>
+            ))}
           </div>
         </div>
       </section>

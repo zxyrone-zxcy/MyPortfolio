@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { ArrowUpRight, BookOpen, PenLine } from 'lucide-react';
+import { ArrowUpRight, BookOpen } from 'lucide-react';
+import '../styles/blog.css';
 
 const posts = [
   {
@@ -52,7 +53,6 @@ export default function Blog() {
             <div className="blog-card-top"><span><BookOpen size={15} /> {post.category}</span><span>{post.date}</span></div>
             <h2>{post.title}</h2>
             <p>{post.excerpt}</p>
-            <span className="blog-read-more">Coming soon <ArrowUpRight size={15} /></span>
           </article>
         ))}
       </section>

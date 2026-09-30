@@ -1,10 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowDown, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { ArrowDown, Facebook, Instagram, Linkedin, Code2, Coffee, Zap, Atom, Database, Leaf, Notebook } from 'lucide-react';
 import profilePhoto from '../assets/hero.png';
+import paraBangPhoto from '../assets/NaParaBang.png';
 import '../styles/global.css';
 import '../styles/responsive.css';
 
 const roles = ['Data Analyst', 'Junior Developer'];
+const technologies = [
+  { name: 'Java', Icon: Coffee, style: 'technology-java' },
+  { name: 'Vite', Icon: Zap, style: 'technology-vite' },
+  { name: 'React', Icon: Atom, style: 'technology-react' },
+  { name: 'Oracle Database', Icon: Database, style: 'technology-oracle' },
+  { name: 'MongoDB', Icon: Leaf, style: 'technology-mongodb' },
+  { name: 'Google Colab', Icon: Notebook, style: 'technology-colab' },
+];
 
 const Home = () => {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
@@ -18,7 +27,7 @@ const Home = () => {
       setTimeout(() => {
         setCurrentRoleIndex((prevIndex) => (prevIndex + 1) % roles.length);
         setIsRoleFading(false);
-      }, 400); // Duration matches CSS fade-out
+      }, 500); // Match the fade-out duration
     }, 3000);
 
     return () => clearInterval(interval);
@@ -94,34 +103,40 @@ const Home = () => {
 
         {/* My Approach Section */}
         <section id="approach" className="section-container reveal-on-scroll">
-          <p className="section-badge">MY APPROACH</p>
-          <div className="approach-banner">
-            <p className="approach-banner-text">"Building systems with code, uncovering answers with data."</p>
-          </div>
+          <h2 className="approach-statement reveal-on-scroll">Building systems with code, uncovering answers with data.</h2>
         </section>
 
         {/* About Me Section */}
-        <section id="about" className="section-container grid-2 reveal-on-scroll">
+        <section id="about" className="section-container reveal-on-scroll">
           <div className="about-text-content">
             <p className="section-badge">ABOUT ME</p>
-            <h2 className="section-title">Curiosity is where clear solutions begin.</h2>
+            <h2 className="section-title">A little more about myself.</h2>
             <p className="section-paragraph">
-              I enjoy understanding how things work beneath the surface, then turning complex problems into clean, practical solutions. By combining software development with data analysis, I aim to create work that is not only functional, but also thoughtful, useful, and easy to understand.
+              Hi, I’m Xy. I’m a BSIT student and a junior web developer. I’m pretty knowledgeable when it comes to databases, and I also do video editing using Adobe Premiere Pro. I’m still learning and improving, but I really enjoy building things and working with technology.
             </p>
 
-            <div className="pill-group">
-              <span className="pill">Problem solving </span>
-              <span className="pill">Data thinking </span>
-              <span className="pill">Continuous learning </span>
+            <div className="technology-stack">
+              <h3 className="technology-stack-heading">
+                <Code2 size={18} aria-hidden="true" />
+                <span>Building using:</span>
+              </h3>
+              <div className="technology-marquee" role="group" aria-label="Programming languages and tools">
+                <div className="technology-marquee-track">
+                  {[false, true].map((isDuplicate) => (
+                    <div className="technology-marquee-group" key={String(isDuplicate)} aria-hidden={isDuplicate}>
+                      {technologies.map(({ name, Icon, style }) => (
+                        <span className={`technology-item ${style}`} key={name}>
+                          <Icon size={19} aria-hidden="true" />
+                          <span>{name}</span>
+                        </span>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="about-number-card">
-            <span className="number-large">01</span>
-            <p className="number-caption">
-              The goal is never complexity for its own sake. It is a better path from question to outcome.
-            </p>
-          </div>
         </section>
 
         {/* My Dedication Section */}
@@ -137,8 +152,8 @@ const Home = () => {
               </div>
 
               <div className="dedication-item">
-                <h4>The Pressure to Enter the IT Field</h4>
-                <p>entering the IT field brought a lot of pressure. It feels like everyone expects you to know five different programming languages, networking, and cloud systems right out of the gate, and the sheer volume of things to learn can be pretty overwhelming. But whenever I start feeling that doubt, I remind myself of where I started. I’ve always been drawn to solving complex math problems, and tackling pre-calc and calculus taught me how to break down tough logic.</p>
+                <h4>The Pressure entering to the IT Field</h4>
+                <p>Entering the IT field brought a lot of pressure. It feels like everyone expects you to know five different programming languages, networking, and cloud systems right out of the gate, and the sheer volume of things to learn can be pretty overwhelming. But whenever I start feeling that doubt, I remind myself of where I started. I’ve always been drawn to solving complex math problems, and tackling pre-calc and calculus taught me how to break down tough logic.</p>
               </div>
 
               <div className="dedication-item">
@@ -153,8 +168,11 @@ const Home = () => {
           </div>
 
           <div className="photo-card-wrapper">
-            <div className="photo-card">
+            <div className="photo-card photo-card-primary">
               <img src={profilePhoto} alt="Xyrone Edmund Zamudio" className="profile-img" />
+            </div>
+            <div className="photo-card photo-card-secondary">
+              <img src={paraBangPhoto} alt="Xyrone at a group learning session" className="profile-img" />
             </div>
           </div>
         </section>

@@ -1,0 +1,29 @@
+.site-footer .footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.footer-name {
+  color: #d6e0f3;
+  font-weight: 600;
+}
+
+.footer-role {
+  margin-left: auto;
+  color: #7f8ca2;
+  text-align: right;
+}
+
+@media (max-width: 720px) {
+  .site-footer .footer-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .footer-role {
+    align-self: flex-end;
+  }
+}
