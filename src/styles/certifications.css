@@ -152,13 +152,34 @@
 }
 
 @media (max-width: 640px) {
+  .cert-page .cards-marquee {
+    overflow: visible;
+  }
+
+  .cert-page .cards-track {
+    display: block;
+    width: 100%;
+    animation: none;
+  }
+
   .cert-page .cards-set {
-    grid-auto-columns: minmax(15rem, calc(100vw - 4rem));
+    display: grid;
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    gap: 1rem;
+    padding-right: 0;
+  }
+
+  .cert-page .cards-set[aria-hidden="true"] {
+    display: none;
   }
 
   .cert-page .cert-card {
     min-height: 17rem;
     padding: 1.2rem;
+    box-sizing: border-box;
   }
 
   .cert-page .card-links .card-link {

@@ -1214,3 +1214,13 @@ body {
   .skills-list { grid-template-columns: 1fr; }
   .footer-row { flex-direction: column; }
 }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .menu-wrap { display: block; }
+}
+
+@media (min-width: 769px) {
+  .nav-links { display: flex; }
+  .menu-wrap { display: none; }
+}
