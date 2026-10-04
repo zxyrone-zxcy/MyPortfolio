@@ -34,6 +34,8 @@
   .brand-mark { font-size: 0.67rem; letter-spacing: 0.04em; }
   .top-nav { top: 0.55rem; width: calc(100% - 1rem); }
   .hero-section { min-height: min(760px, 100svh); padding: 7rem 1rem 5rem; }
+  .hero-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .hero-avatar-button { width: 110px; height: 110px; }
   .hero-name { font-size: clamp(2rem, 10vw, 2.6rem); line-height: 1.08; }
   .hero-description { font-size: 0.96rem; }
   .hero-actions { align-items: stretch; flex-direction: column; width: min(100%, 19rem); margin-inline: auto; }

@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowDown, Facebook, Instagram, Linkedin, Code2, Coffee, Zap, Atom, Database, Leaf, Notebook, Braces } from 'lucide-react';
-import profilePhoto from '../assets/hero.png';
+import profilePhoto from '../assets/1x1 Picture.jpg';
+import myPhotoshoot from '../assets/MyPhotoshoot.jpg';
+import heroPhoto from '../assets/hero.png';
 import paraBangPhoto from '../assets/NaParaBang.png';
 import '../styles/global.css';
 import '../styles/responsive.css';
@@ -19,6 +21,9 @@ const technologies = [
 const Home = () => {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [isRoleFading, setIsRoleFading] = useState(false);
+  const [isProfileFlipping, setIsProfileFlipping] = useState(false);
+  const [isFrontFaceVisible, setIsFrontFaceVisible] = useState(true);
+  const [flipDirection, setFlipDirection] = useState(1);
   const containerRef = useRef(null);
 
   // Interchangeable Role Text Animation
@@ -77,16 +82,40 @@ const Home = () => {
           </div>
 
           <div className="hero-content">
-            <p className="hero-subtitle">SOFTWARE · DATA · SYSTEMS</p>
+            <div className="hero-header">
+              <button
+                type="button"
+                className={`hero-avatar-button ${isProfileFlipping ? 'is-flipping' : ''} ${isFrontFaceVisible ? 'is-front-visible' : 'is-back-visible'}`}
+                style={{ '--flip-direction': flipDirection }}
+                aria-label="Flip profile photo"
+                onClick={() => {
+                  setFlipDirection((prev) => prev * -1);
+                  setIsFrontFaceVisible((prev) => !prev);
+                  setIsProfileFlipping(true);
+                  window.setTimeout(() => setIsProfileFlipping(false), 700);
+                }}
+              >
+                <span className="hero-avatar-face hero-avatar-front">
+                  <img src={profilePhoto} alt="Xyrone Edmund Zamudio" className="hero-avatar" />
+                </span>
+                <span className="hero-avatar-face hero-avatar-back">
+                  <img src={myPhotoshoot} alt="Xyrone Edmund Zamudio professional shoot" className="hero-avatar hero-avatar-back-image" />
+                </span>
+              </button>
 
-            <h1 className="hero-name">
-              Xyrone Edmund Zamudio
-            </h1>
+              <div className="hero-text-block">
+                <p className="hero-subtitle">SOFTWARE · DATA · SYSTEMS</p>
 
-            <div className="role-container">
-              <h2 className={`hero-role ${isRoleFading ? 'fade-out' : 'fade-in'}`}>
-                {roles[currentRoleIndex]}
-              </h2>
+                <h1 className="hero-name">
+                  Xyrone Edmund Zamudio
+                </h1>
+
+                <div className="role-container">
+                  <h2 className={`hero-role ${isRoleFading ? 'fade-out' : 'fade-in'}`}>
+                    {roles[currentRoleIndex]}
+                  </h2>
+                </div>
+              </div>
             </div>
 
             <p className="hero-description">
@@ -170,7 +199,7 @@ const Home = () => {
 
           <div className="photo-card-wrapper">
             <div className="photo-card photo-card-primary">
-              <img src={profilePhoto} alt="Xyrone Edmund Zamudio" className="profile-img" />
+              <img src={heroPhoto} alt="Xyrone Edmund Zamudio professional shoot" className="profile-img" />
             </div>
             <div className="photo-card photo-card-secondary">
               <img src={paraBangPhoto} alt="Xyrone at a group learning session" className="profile-img" />

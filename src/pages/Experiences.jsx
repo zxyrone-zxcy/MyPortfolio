@@ -47,7 +47,6 @@ export default function Experience() {
           <span className="experience-node experience-node-three" />
         </div>
         <div className="page-width hero-content reveal-on-scroll">
-          <p className="eyebrow">Xyrone Edmund Zamudio</p>
           <h1 id="page-title" className="hero-title text-[#f2f6ff]">
             Experiences
           </h1>

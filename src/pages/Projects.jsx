@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 const Projects = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeCardIndex, setActiveCardIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(3);
 
   const projectPlaceholders = [
-    { id: 1, title: 'Project 01', description: 'Add the title and short description for project 01.' },
+    { id: 1, title: 'PUBMAT FOR AWS', description: 'Add the title and short description for project 01.' },
     { id: 2, title: 'Project 02', description: 'Add the title and short description for project 02.' },
     { id: 3, title: 'Project 03', description: 'Add the title and short description for project 03.' },
     { id: 4, title: 'Project 04', description: 'Add the title and short description for project 04.' },
@@ -16,8 +17,13 @@ const Projects = () => {
   ];
 
   const handleCardClick = (index) => {
+    setSelectedIndex(index);
     setActiveCardIndex(index);
     setIsDrawerOpen(true);
+  };
+
+  const moveSelection = (direction) => {
+    setSelectedIndex((currentIndex) => (currentIndex + direction + projectPlaceholders.length) % projectPlaceholders.length);
   };
 
   return (
@@ -32,26 +38,58 @@ const Projects = () => {
             </p>
           </div>
 
-          <div className="project-stack" aria-label="Project placeholders">
-            {projectPlaceholders.map((project, index) => (
-              <article
-                key={project.id}
-                className={`canva-card stack-card ${activeCardIndex === index ? 'is-forward' : ''}`}
-                tabIndex={0}
-                role="button"
-                aria-label={`Open details for ${project.title}`}
-                onClick={() => handleCardClick(index)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    handleCardClick(index);
-                  }
-                }}
-              >
-                <h2>{project.title}</h2>
-                <p>{project.description}</p>
-              </article>
-            ))}
+          <div className="projects-carousel-wrap">
+            <div className="projects-carousel-controls" aria-label="Project carousel controls">
+              <button type="button" aria-label="Previous project" onClick={() => moveSelection(-1)}>
+                <ChevronLeft size={19} aria-hidden="true" />
+              </button>
+              <button type="button" aria-label="Next project" onClick={() => moveSelection(1)}>
+                <ChevronRight size={19} aria-hidden="true" />
+              </button>
+            </div>
+            <div className="project-stack" role="region" aria-roledescription="carousel" aria-label="Projects">
+              {projectPlaceholders.map((project, index) => {
+                let relativePosition = (index - selectedIndex + projectPlaceholders.length) % projectPlaceholders.length;
+                if (relativePosition > Math.floor(projectPlaceholders.length / 2)) {
+                  relativePosition -= projectPlaceholders.length;
+                }
+                const distance = Math.abs(relativePosition);
+
+                return (
+                  <article
+                    key={project.id}
+                    className={`canva-card stack-card ${distance === 0 ? 'is-active' : ''} ${activeCardIndex === index ? 'is-forward' : ''}`}
+                    style={{
+                      '--card-x': `${relativePosition * 9.2}rem`,
+                      '--card-y': `${distance * 8}px`,
+                      '--card-rotation': `${relativePosition * -8}deg`,
+                      '--card-scale': Math.max(.58, 1 - distance * .12),
+                      '--card-opacity': Math.max(.34, 1 - distance * .2),
+                      zIndex: projectPlaceholders.length - distance,
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    aria-pressed={distance === 0}
+                    aria-label={`Open details for ${project.title}`}
+                    onClick={() => handleCardClick(index)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleCardClick(index);
+                      }
+                    }}
+                  >
+                    <span className="project-card-art" aria-hidden="true">
+                      <span>{String(project.id).padStart(2, '0')}</span>
+                    </span>
+                    <div className="project-card-copy">
+                      <h2>{project.title}</h2>
+                      <p>{project.description}</p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
