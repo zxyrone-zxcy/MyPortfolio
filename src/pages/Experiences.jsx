@@ -63,10 +63,10 @@ export default function Experience() {
       <section className="section border-y border-[var(--line)] bg-gradient-to-r from-[#101521] to-[#0c101b]">
         <div className="page-width reveal-on-scroll">
           <p className="section-label">An evolving practice</p>
-          <h2 className="section-title text-[#f2f6ff]">Growth shaped by doing.</h2>
+          <h2 className="section-title text-[#f2f6ff]">Designed, built, and delivered.</h2>
           <div className="w-16 h-[2px] my-5 bg-gradient-to-r from-[#70adff] to-[#aa8cff]"></div>
           <p className="text-[#b1bed3] font-serif text-2xl max-w-3xl leading-snug">
-            This page highlights Xyrone's growth across software development, data analysis, and practical problem solving—an ongoing path of learning, building, and refining ideas.
+            A timeline of my work in creative media, academic projects, and hands-on roles.
           </p>
         </div>
       </section>
