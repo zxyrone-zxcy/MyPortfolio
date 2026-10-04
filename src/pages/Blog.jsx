@@ -1,24 +1,29 @@
 import React, { useEffect, useRef } from 'react';
-import { ArrowUpRight, BookOpen } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import '../styles/blog.css';
 
 const posts = [
   {
-    category: 'Notes on learning',
-    title: 'Turning curiosity into a practice',
-    excerpt: 'A few thoughts on learning technical skills steadily, asking better questions, and letting small projects teach you what to explore next.',
+    category: 'Wanting to learn something',
+    title: 'The curious young Xy',
+    excerpt: `As I entered high school, I slowly discovered more about myself. I became more interested in technology and started exploring different things. I enjoyed working with computers, editing videos and photos, and eventually learning how programming worked. School also became an important part of my growth. I experienced achievements that made me proud, but I also experienced failures and difficulties that taught me that success does not always come easily.
+One of the things I learned during those years was the importance of effort. Whether it was a school project, research paper, science activity, or working with other people, I learned that the result often depends on how much effort I am willing to give. I also learned that working with other people is not always easy. There are times when people have different priorities, opinions, and levels of responsibility. These experiences helped me become more patient and responsible.`,
     date: 'A work in progress',
   },
   {
-    category: 'Software & systems',
-    title: 'Making useful things feel simple',
-    excerpt: 'Good interfaces and dependable systems often come from noticing friction and making the next step easier to understand.',
+    category: 'Becoming Who I Want to Be',
+    title: 'Doing the next step',
+    excerpt: `When I entered college, things became more serious. I started taking my future more seriously as well. Studying Information Technology introduced me to programming, databases, web development, and different areas of technology. At first, I thought I already knew what I wanted to become. But as I continued learning, I realized that there are many paths I can take.
+
+  I became interested in web development, software development, UI/UX design, and even areas such as DevOps and artificial intelligence. I am still figuring out exactly where I want to end up, but I have learned that it is okay not to have everything figured out immediately. What matters is that I continue learning and improving.`,
     date: 'A work in progress',
   },
   {
-    category: 'Data & decisions',
-    title: 'From information to insight',
-    excerpt: 'Data becomes more useful when the question is clear, the context is visible, and the result can support a real decision.',
+    category: 'Failing is learning',
+    title: 'A stepping stone to success and growth',
+    excerpt: `I also experienced moments in college that made me question myself. One of them was when I took the Java Certification Specialist examination through Pearson VUE. I failed the certification, and at that time, I was really disappointed. I felt sad and worried that I would not be able to advance to the next step. For a while, the result made me feel like maybe I was not good enough at programming.
+
+  However, as I look back at that experience, I realize that failing the certification did not mean that I had to stop. It was only one failure in a much longer journey. Instead of allowing that result to define me, I learned that I still had more to study and improve. It reminded me that being a student is not about getting everything right on the first try. Sometimes, failure shows us where we still need to grow.`,
     date: 'A work in progress',
   },
 ];
@@ -44,8 +49,8 @@ export default function Blog() {
   return (
     <main className="blog-page page-width" ref={pageRef}>
       <header className="blog-heading">
-        <h1 className="section-title">Ideas, in progress.</h1>
-        <p className="section-subtitle">A journal about building with code, learning from data, and finding clarity in the details.</p>
+        <h1 className="section-title">Blogs, in progress.</h1>
+        <p className="section-subtitle">A journal about learning and growth.</p>
       </header>
       <section className="blog-grid" aria-label="Blog posts">
         {posts.map((post, index) => (

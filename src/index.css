@@ -719,33 +719,52 @@ body {
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, .14);
   border-radius: .65rem;
-  background:
-    radial-gradient(ellipse at 52% 22%, rgba(255, 255, 255, .38), transparent 7%),
-    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, .13), transparent 42%),
-    linear-gradient(145deg, #137d92, #11364d 52%, #102332);
+  background: #102332;
   box-shadow: inset 0 0 2.4rem rgba(3, 10, 24, .4);
 }
-.stack-card:nth-child(2) .project-card-art { background: radial-gradient(ellipse at 35% 26%, rgba(255, 200, 124, .62), transparent 17%), radial-gradient(ellipse at 65% 68%, rgba(203, 62, 50, .72), transparent 40%), linear-gradient(145deg, #713b2d, #25253c 58%, #122232); }
-.stack-card:nth-child(3) .project-card-art { background: radial-gradient(ellipse at 68% 28%, rgba(123, 225, 202, .6), transparent 17%), radial-gradient(ellipse at 38% 64%, rgba(52, 112, 169, .75), transparent 42%), linear-gradient(145deg, #285969, #193347 60%, #101a2a); }
-.stack-card:nth-child(4) .project-card-art { background: radial-gradient(ellipse at 55% 27%, rgba(251, 217, 145, .6), transparent 18%), radial-gradient(ellipse at 34% 70%, rgba(206, 113, 52, .64), transparent 40%), linear-gradient(145deg, #755333, #373044 58%, #172333); }
-.stack-card:nth-child(5) .project-card-art { background: radial-gradient(ellipse at 38% 25%, rgba(244, 165, 124, .62), transparent 18%), radial-gradient(ellipse at 68% 72%, rgba(177, 70, 119, .66), transparent 43%), linear-gradient(145deg, #673c53, #34304a 58%, #162232); }
-.stack-card:nth-child(6) .project-card-art { background: radial-gradient(ellipse at 62% 25%, rgba(152, 224, 244, .65), transparent 17%), radial-gradient(ellipse at 38% 72%, rgba(61, 127, 198, .7), transparent 42%), linear-gradient(145deg, #28617b, #263a57 58%, #111d31); }
-.stack-card:nth-child(7) .project-card-art { background: radial-gradient(ellipse at 48% 28%, rgba(203, 222, 132, .58), transparent 18%), radial-gradient(ellipse at 64% 72%, rgba(63, 132, 111, .72), transparent 42%), linear-gradient(145deg, #466a50, #2b3c45 58%, #15232f); }
-.project-card-art::after {
-  position: absolute;
-  inset: 12% 14%;
-  border: 1px solid rgba(255, 255, 255, .15);
-  border-radius: 48% 48% 38% 38%;
-  content: '';
-  opacity: .62;
-  filter: drop-shadow(0 0 1rem rgba(137, 207, 255, .28));
-  transform: rotate(-12deg);
+.project-card-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  object-fit: cover;
 }
-.project-card-art span {
-  z-index: 1;
-  color: rgba(255, 255, 255, .72);
-  font: 600 4rem/1 "Fraunces", Georgia, serif;
-  text-shadow: 0 3px 22px rgba(0, 0, 0, .38);
+.project-card-art img.is-contained { object-fit: contain; }
+.project-card-art::after {
+  display: none;
+}
+.project-image-viewer {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 3rem;
+  background: rgba(4, 8, 15, .94);
+}
+.project-image-viewer img {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+.project-image-viewer-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid rgba(204, 224, 255, .38);
+  border-radius: .5rem;
+  color: #f2f6ff;
+  background: rgba(18, 28, 43, .9);
+  cursor: pointer;
+}
+.project-image-viewer-close:focus-visible {
+  outline: 2px solid #78adff;
+  outline-offset: 3px;
 }
 .project-card-copy { padding: .15rem .35rem .3rem; }
 .project-card-copy h2 {

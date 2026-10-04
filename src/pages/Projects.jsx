@@ -1,25 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import signWiseImage from '../assets/SignWiseASL.png';
+import simpleLoginImage from '../assets/simple-log-in-system.png';
+import mockupLoginImage from '../assets/MockUpLogInDesign.png';
 
 const Projects = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [activeCardIndex, setActiveCardIndex] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(3);
+  const [isMockupZoomOpen, setIsMockupZoomOpen] = useState(false);
 
   const projectPlaceholders = [
-    { id: 1, title: 'PUBMAT FOR AWS', description: 'Add the title and short description for project 01.' },
-    { id: 2, title: 'Project 02', description: 'Add the title and short description for project 02.' },
-    { id: 3, title: 'Project 03', description: 'Add the title and short description for project 03.' },
-    { id: 4, title: 'Project 04', description: 'Add the title and short description for project 04.' },
-    { id: 5, title: 'Project 05', description: 'Add the title and short description for project 05.' },
-    { id: 6, title: 'Project 06', description: 'Add the title and short description for project 06.' },
-    { id: 7, title: 'Project 07', description: 'Add the title and short description for project 07.' },
+    { id: 1, title: 'SignWise: American Sign Language', description: 'A project to learn American Sign Language for People.', image: signWiseImage, url: 'https://github.com/zxyrone-zxcy/signwiseasl' },
+    { id: 2, title: 'Simple Log-In System', description: 'A group project to create a reliable security system.', image: simpleLoginImage, url: 'https://github.com/zxyrone-zxcy/login-system-grupo-main' },
+    { id: 3, title: 'Log-In Mock Up', description: 'A design prototype for log-in interface.', image: mockupLoginImage, imageFit: 'contain', url: null, zoomable: true },
   ];
 
+  useEffect(() => {
+    if (!isMockupZoomOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setIsMockupZoomOpen(false);
+    };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMockupZoomOpen]);
+
   const handleCardClick = (index) => {
-    setSelectedIndex(index);
-    setActiveCardIndex(index);
-    setIsDrawerOpen(true);
+    const project = projectPlaceholders[index];
+    if (index !== selectedIndex % projectPlaceholders.length) {
+      setSelectedIndex(index);
+      return;
+    }
+
+    if (project.url) {
+      window.location.assign(project.url);
+    } else if (project.zoomable) {
+      setIsMockupZoomOpen(true);
+    }
   };
 
   const moveSelection = (direction) => {
@@ -58,7 +80,7 @@ const Projects = () => {
                 return (
                   <article
                     key={project.id}
-                    className={`canva-card stack-card ${distance === 0 ? 'is-active' : ''} ${activeCardIndex === index ? 'is-forward' : ''}`}
+                    className={`canva-card stack-card ${distance === 0 ? 'is-active' : ''}`}
                     style={{
                       '--card-x': `${relativePosition * 9.2}rem`,
                       '--card-y': `${distance * 8}px`,
@@ -70,7 +92,7 @@ const Projects = () => {
                     tabIndex={0}
                     role="button"
                     aria-pressed={distance === 0}
-                    aria-label={`Open details for ${project.title}`}
+                    aria-label={`Select ${project.title}`}
                     onClick={() => handleCardClick(index)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
@@ -80,7 +102,7 @@ const Projects = () => {
                     }}
                   >
                     <span className="project-card-art" aria-hidden="true">
-                      <span>{String(project.id).padStart(2, '0')}</span>
+                      <img className={project.imageFit === 'contain' ? 'is-contained' : ''} src={project.image} alt="" />
                     </span>
                     <div className="project-card-copy">
                       <h2>{project.title}</h2>
@@ -94,39 +116,29 @@ const Projects = () => {
         </div>
       </section>
 
-      {isDrawerOpen && (
-        <section
-          id="projects-drawer"
-          className="projects-drawer"
-          aria-labelledby="projects-drawer-title"
-          onClick={(e) => {
-            if (e.target.id === 'projects-drawer') setIsDrawerOpen(false);
+      {isMockupZoomOpen && (
+        <div
+          className="project-image-viewer"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Log-In Mock Up image"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setIsMockupZoomOpen(false);
           }}
         >
-          <div className="projects-drawer-panel" role="dialog" aria-modal="true">
-            <div className="projects-drawer-header">
-              <h2 className="projects-drawer-title" id="projects-drawer-title">
-                {projectPlaceholders[activeCardIndex]?.title ?? 'Project details'}
-              </h2>
-              <button
-                className="canva-button projects-drawer-close"
-                type="button"
-                aria-label="Close Projects"
-                onClick={() => setIsDrawerOpen(false)}
-              >
-                <X size={18} />
-              </button>
-            </div>
-
-            {activeCardIndex !== null && (
-              <article className="canva-card project-placeholder-card">
-                <h3>{projectPlaceholders[activeCardIndex].title}</h3>
-                <p>{projectPlaceholders[activeCardIndex].description}</p>
-              </article>
-            )}
-          </div>
-        </section>
+          <button
+            className="project-image-viewer-close"
+            type="button"
+            aria-label="Close image viewer"
+            autoFocus
+            onClick={() => setIsMockupZoomOpen(false)}
+          >
+            <X size={22} aria-hidden="true" />
+          </button>
+          <img src={mockupLoginImage} alt="Log-In Mock Up design" />
+        </div>
       )}
+
     </main>
   );
 };
