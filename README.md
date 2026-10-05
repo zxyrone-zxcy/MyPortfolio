@@ -1,6 +1,6 @@
 # Personal Portfolio
 
-This project is a personal portfolio website built to showcase my background, work experience, projects, certifications, and blog content in a clean and modern single-page experience.
+This project is a personal portfolio website built to showcase my background, work experience, projects, certifications, and blog content.
 
 It includes dedicated sections for:
 
