@@ -56,7 +56,7 @@ const Projects = () => {
 
           <div className="side-note projects-panel">
             <p className="note-copy">
-              A space for future work, case studies, and thoughtful experiments.
+              A space for my future work, case studies, and thoughtful experiments.
             </p>
           </div>
 

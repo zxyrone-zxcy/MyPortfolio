@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowDown, Facebook, Instagram, Linkedin, Code2, Coffee, Zap, Atom, Database, Leaf, Notebook, Braces } from 'lucide-react';
+import { ArrowDown, Facebook, Instagram, Linkedin, Code2, Coffee, Zap, Atom, Database, Leaf, Braces } from 'lucide-react';
 import profilePhoto from '../assets/1x1 Picture.jpg';
 import myPhotoshoot from '../assets/MyPhotoshoot.jpg';
 import heroPhoto from '../assets/hero.png';
@@ -7,14 +7,14 @@ import paraBangPhoto from '../assets/NaParaBang.png';
 import '../styles/global.css';
 import '../styles/responsive.css';
 
-const roles = ['Data Analyst', 'Junior Developer'];
+const roles = ['Pubmat Designer', 'Junior Developer', 'Database Specialist'];
 const technologies = [
   { name: 'Java', Icon: Coffee, style: 'technology-java' },
   { name: 'Vite', Icon: Zap, style: 'technology-vite' },
   { name: 'React', Icon: Atom, style: 'technology-react' },
   { name: 'Oracle Database', Icon: Database, style: 'technology-oracle' },
   { name: 'MongoDB', Icon: Leaf, style: 'technology-mongodb' },
-  { name: 'Google Colab', Icon: Notebook, style: 'technology-colab' },
+  { name: 'Laravel', Icon: Braces, style: 'technology-laravel' },
   { name: 'Python', Icon: Braces, style: 'technology-python' },
 ];
 

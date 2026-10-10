@@ -105,7 +105,7 @@ export default function Experience() {
 
             <article className="milestone reveal-on-scroll" style={{ transitionDelay: "180ms" }}>
               <div className="experience-heading">
-                <h3 className="text-xl font-bold text-[#f2f6ff]">Academic Milestones · Napayong High School</h3>
+                <h3 className="text-xl font-bold text-[#f2f6ff]">Academic Milestones · Nagpayong High School</h3>
                 <time className="experience-date" dateTime="2023">2023–Present</time>
               </div>
               <ul className="experience-duties">
